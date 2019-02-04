@@ -1,18 +1,31 @@
 import { put, takeLatest, all } from 'redux-saga/effects/';
-import ResourceService from '../services/api/resource';
+import UserService from '../services/api/UserService';
+import ResourcesService from '../services/api/ResourcesService'
 
-function* getResource() {
-  const response = yield ResourceService.getAll();
+
+function* userLogin(payload) {
+  const response = yield UserService.userLogin(payload);
   console.log('response form axiso wareper : ', response);
   if (response.status === 200) {
-    yield put({ type: 'RESOURCE_RECEIVED', resource: response.data.data });
+    yield put({ type: 'USER_LOGIN_DONE', user: response.data });
   } else {
-    yield put({ type: 'RESOURCE_RECEIVED_FAILED', resource: response.status });
+    yield put({ type: 'USER_LOGIN_FAILED', resource: response.status });
+  }
+}
+
+function* getResources() {
+  const response = yield ResourcesService.getAll();
+  console.log('response form axiso wareper : ', response);
+  if (response.status === 200) {
+    yield put({ type: 'GET_RESOURCES_DONE', resources: response.data });
+  } else {
+    yield put({ type: 'GET_RESOURCES_FAILED', resources: response.status });
   }
 }
 
 function* actionWatcher() {
-  yield takeLatest('GET_RESOURCE', getResource);
+  yield takeLatest('USER_LOGIN', userLogin);
+  yield takeLatest('GET_RESOURCES', getResources);
 }
 
 

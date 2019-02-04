@@ -40,6 +40,15 @@ const create = (params) => {
   });
 }
 
+
+const userLogin = (params) => {
+  return request({
+    url: `/login`,
+    method: 'POST',
+    data: params.data
+  })
+}
+
 /**
  * Update a paritcular resource
  *
@@ -68,8 +77,8 @@ const remove = (id) => {
   })
 }
 
-const ResourceService = {
-  get, getAll, create, update, remove,
+const UserService = {
+  get, getAll, create, update, remove, userLogin
 }
 
-export default ResourceService;
+export default UserService;

@@ -5,9 +5,15 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import ErrorBoundary from './utils/ErrorBoundary';
 import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
-import FirstTab from './components/FirstTab.jsx';
-import SecondTab from './components/SecondTab.jsx';
-import ThirdTab from './components/ThirdTab.jsx';
+// import FirstTab from './components/FirstTab.jsx';
+// import SecondTab from './components/SecondTab.jsx';
+// import ThirdTab from './components/ThirdTab.jsx';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Resources from './components/Resources';
+import ListUsers from './components/ListUsers';
+import UpdateUser from './components/UpdateUser';
+
 import { getResource } from './actions';
 
 class App extends Component {
@@ -23,10 +29,12 @@ class App extends Component {
           <div className="container container-custom-css">
             <ErrorBoundary>
               <Switch>
-                <Route exact path="/" render={() => (<Redirect to="/firstTab" />)} />
-                <Route exact path="/firstTab" component={FirstTab} />
-                <Route exact path="/secondTab" component={SecondTab} />
-                <Route path="/thirdTab" component={ThirdTab} />
+                <Route exact path="/" render={() => (<Redirect to="/login" />)} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={Signup} />
+                <Route exact path="/resources" component={Resources} />
+                <Route path="/listusers" component={ListUsers} />
+                <Route exact path="/updateuser" component={UpdateUser} />
               </Switch>
             </ErrorBoundary>
           </div>

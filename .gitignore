@@ -23,4 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 temp/
 .env
-mokeapi/node_modules
+api/node_modules

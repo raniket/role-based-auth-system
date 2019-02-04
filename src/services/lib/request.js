@@ -15,7 +15,8 @@ const LOCAL_HOST = process.env.REACT_APP_API_LOCAL_HOST;
  * Create an Axios Client with defaults
  */
 const client = axios.create({
-  baseURL: LOCAL_HOST,
+  // baseURL: LOCAL_HOST,
+  baseURL: 'http://localhost:9000',
 });
 
 /**
