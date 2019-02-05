@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Resources.css';
-import { getResources } from '../actions';
+import { getResources, updateCurrentPath } from '../actions';
 
 class Resources extends Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class Resources extends Component {
     loading: true,
   }
   componentDidMount() {
+    this.props.updateCurrentPath(this.props.match.path)  
     this.props.getResources();
   }
 
@@ -108,6 +109,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getResources: getResources,
+  updateCurrentPath: updateCurrentPath,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Resources);

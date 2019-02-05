@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
 import FormValidator from '../utils/FormValidator';
-import { userSignup, resetSignedUp } from '../actions';
+import { userSignup, resetSignedUp, updateCurrentPath } from '../actions';
 import './Signup.css';
 
 class Login extends Component {
@@ -61,6 +61,10 @@ class Login extends Component {
     }
 
     this.submited = false;
+  }
+
+  componentDidMount() {
+    this.props.updateCurrentPath(this.props.match.path)  
   }
 
   handleInputValueChange = (event) => {
@@ -152,6 +156,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   userSignup: userSignup,
   resetSignedUp: resetSignedUp,
+  updateCurrentPath: updateCurrentPath,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

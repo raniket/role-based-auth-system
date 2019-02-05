@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
-import { userLogout } from '../actions';
+import { userLogout, updateCurrentPath } from '../actions';
 
 class Logout extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class Logout extends Component {
   }
 
   componentDidMount() {
+    this.props.updateCurrentPath(this.props.match.path)  
     this.props.userLogout();
     // this.props.history.push('/login');
     toast.info("Logging out... ");
@@ -39,6 +40,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   userLogout: userLogout,
+  updateCurrentPath: updateCurrentPath,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Logout);

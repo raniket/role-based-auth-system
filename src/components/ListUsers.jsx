@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Resources.css';
-import { getUsers } from '../actions';
+import { getUsers, updateCurrentPath } from '../actions';
 
 class ListUsers extends Component {
   constructor(props) {
@@ -13,12 +14,14 @@ class ListUsers extends Component {
     loading: true,
   }
   componentDidMount() {
+    this.props.updateCurrentPath(this.props.match.path)
     this.props.getUsers();
   }
 
   render() {
-    const { users, usersReceived, loading } = this.props;
-
+    const { user, users, usersReceived, loading } = this.props;
+    const currentUserRole = user.role;
+    console.log('currentUserRole : ', currentUserRole);
     const resourceItems = (usersReceived === true) ? users.map(user => (
       <tr key={user.id}>
         <td className="pt-3-half">{`${user.id || ''}`}</td>
@@ -26,6 +29,9 @@ class ListUsers extends Component {
         <td className="pt-3-half">{user.lastName || 'not provided'}</td>
         <td className="pt-3-half">{user.email || 'not provided'}</td>
         <td className="pt-3-half">{user.role || 'not provided'}</td>
+        {(currentUserRole !== 'user') ? (<td>
+          mmm
+        </td>) : <th>Not allowed</th>}
       </tr>
     )) : <div>loading data</div>;
 
@@ -42,6 +48,7 @@ class ListUsers extends Component {
                   <th className="text-center">Last Name</th>
                   <th className="text-center">Email</th>
                   <th className="text-center">Role</th>
+                  <th className="text-center">Change Role</th>
                 </tr>
                 {resourceItems}
               </tbody>
@@ -71,7 +78,6 @@ class ListUsers extends Component {
     return (
 
       <div>
-        {/* <h1>all users loaded</h1> */}
         {finalTemplate}
       </div>
 
@@ -81,6 +87,7 @@ class ListUsers extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     users: state.users,
     usersReceived: state.usersReceived,
     loading: state.loading,
@@ -89,6 +96,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getUsers: getUsers,
+  updateCurrentPath: updateCurrentPath,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListUsers);
