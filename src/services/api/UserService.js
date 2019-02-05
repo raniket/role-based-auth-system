@@ -34,9 +34,9 @@ const getAll = () => {
  */
 const create = (params) => {
   return request({
-    url: `/resource/api`,
+    url: `/signup`,
     method: 'POST',
-    data: params
+    data: params.data
   });
 }
 

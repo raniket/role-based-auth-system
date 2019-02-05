@@ -58,13 +58,17 @@ class Login extends Component {
   }
 
   render() {
-    const { logedIn } = this.props;
+    const { logedIn, loginFailed } = this.props;
     if (logedIn === true) {
       toast.success('You are loggedin! 👍');
       // this.props.resetTeacherCreated({ teacherCreated: null });
       setTimeout(() => {
         this.props.history.push('/resources');
       }, 1500);
+    }
+
+    if (loginFailed === true) {
+      toast.error("Account doesn't exists with this email id! 😬");
     }
 
     let validation = this.submited ? this.validator.validate(this.state) : this.state.validation;
@@ -97,7 +101,8 @@ class Login extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     loading: state.loading,
-    logedIn: state.logedIn
+    logedIn: state.logedIn,
+    loginFailed: state.loginFailed,
   }
 }
 

@@ -23,9 +23,21 @@ function* getResources() {
   }
 }
 
+function* userSignup(payload) {
+  console.log('payload in SAGA userSignup ::: ', payload);
+  const response = yield UserService.create(payload);
+  console.log('response form axiso wareper : ', response);
+  if (response.status === 201) {
+    yield put({ type: 'USER_SIGNUP_DONE', user: payload.data });
+  } else {
+    yield put({ type: 'USER_SIGNUP_FAILED', userSignupEror: response.data.error });
+  }
+}
+
 function* actionWatcher() {
   yield takeLatest('USER_LOGIN', userLogin);
   yield takeLatest('GET_RESOURCES', getResources);
+  yield takeLatest('USER_SIGNUP', userSignup);
 }
 
 

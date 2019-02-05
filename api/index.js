@@ -25,13 +25,16 @@ app.post('/signup', (req, res) => {
     res.status(400);
     res.json({ error: 'body is required' });
   }
-
+  if (db.user.find(user => user.email === body.email)) {
+    res.status(409)
+    res.json({ error: 'user with this email already exist' });
+  }
   console.log('body: ', body);
   const id = db.user.length + 1;
   body.id = id;
   db.user.push(body);
   res.status(201);
-  res.setHeader('Content-Type', 'application/json');
+  // res.setHeader('Content-Type', 'application/json');
   res.json({ message: 'resource created' });
 
 });
