@@ -45,6 +45,14 @@ const reducer = (state = initState, action) => {
     case 'RESET_SIGNED_UP':
       return { ...state, signedUp: false };
 
+    // handle all users loading
+    case 'GET_USERS':
+      return {...state, loading: true};
+    case 'GET_USERS_DONE':
+      return { ...state, users: action.users, usersReceived: true, loading: false };
+    case 'GET_USERS_FAILED':
+      return {...state, usersReceived: false, loading: false}
+
     default:
       return state;
   }

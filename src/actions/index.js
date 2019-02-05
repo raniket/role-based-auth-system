@@ -16,6 +16,10 @@ export const userLogout = () => ({
   type: 'USER_LOGOUT',
 });
 
+export const getUsers = () => ({
+  type: 'GET_USERS',
+})
+
 export const getResources = () => ({
   type: 'GET_RESOURCES',
 })

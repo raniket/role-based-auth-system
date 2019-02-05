@@ -23,6 +23,16 @@ function* userLogout() {
   }
 }
 
+function* getUsers() {
+  const response = yield UserService.getUsers();
+  console.log('response form axiso wareper : ', response);
+  if (response.status === 200) {
+    yield put({ type: 'GET_USERS_DONE', users: response.data });
+  } else {
+    yield put({ type: 'GET_USERS_FAILED', resource: response.status });
+  }
+}
+
 function* getResources() {
   const response = yield ResourcesService.getAll();
   console.log('response form axiso wareper : ', response);
@@ -49,6 +59,7 @@ function* actionWatcher() {
   yield takeLatest('GET_RESOURCES', getResources);
   yield takeLatest('USER_SIGNUP', userSignup);
   yield takeLatest('USER_LOGOUT', userLogout);
+  yield takeLatest('GET_USERS', getUsers);
 }
 
 
