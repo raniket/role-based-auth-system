@@ -1,6 +1,6 @@
 import { put, takeLatest, all } from 'redux-saga/effects/';
 import UserService from '../services/api/UserService';
-import ResourcesService from '../services/api/ResourcesService'
+import ResourcesService from '../services/api/ResourcesService';
 
 
 function* userLogin(payload) {
@@ -10,6 +10,16 @@ function* userLogin(payload) {
     yield put({ type: 'USER_LOGIN_DONE', user: response.data });
   } else {
     yield put({ type: 'USER_LOGIN_FAILED', resource: response.status });
+  }
+}
+
+function* userLogout() {
+  const response = yield UserService.userLogout();
+  console.log('response form axiso wareper : ', response);
+  if (response.status === 200) {
+    yield put({ type: 'USER_LOGOUT_DONE', user: response.data });
+  } else {
+    yield put({ type: 'USER_LOGOUT_FAILED', resource: response.status });
   }
 }
 
@@ -30,7 +40,7 @@ function* userSignup(payload) {
   if (response.status === 201) {
     yield put({ type: 'USER_SIGNUP_DONE', user: payload.data });
   } else {
-    yield put({ type: 'USER_SIGNUP_FAILED', userSignupEror: response.data.error });
+    yield put({ type: 'USER_SIGNUP_FAILED', userSignupError: response.data.error });
   }
 }
 
@@ -38,6 +48,7 @@ function* actionWatcher() {
   yield takeLatest('USER_LOGIN', userLogin);
   yield takeLatest('GET_RESOURCES', getResources);
   yield takeLatest('USER_SIGNUP', userSignup);
+  yield takeLatest('USER_LOGOUT', userLogout);
 }
 
 

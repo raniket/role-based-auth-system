@@ -58,6 +58,7 @@ app.post('/login', (req, res) => {
 
 app.get('/logout', (req, res) => {
   currentUser = {};
+  console.log('USER LOGOUT CALLED in SERVER ', new Date().toUTCString());
   res.status(200);
   res.setHeader('Content-Type', 'application/json');
   res.json({ message: 'logout success' })

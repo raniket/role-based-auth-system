@@ -49,6 +49,13 @@ const userLogin = (params) => {
   })
 }
 
+const userLogout = () => {
+  return request({
+    url: `/logout`,
+    method: 'GET',
+  })
+}
+
 /**
  * Update a paritcular resource
  *
@@ -78,7 +85,7 @@ const remove = (id) => {
 }
 
 const UserService = {
-  get, getAll, create, update, remove, userLogin
+  get, getAll, create, update, remove, userLogin, userLogout,
 }
 
 export default UserService;

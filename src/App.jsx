@@ -5,11 +5,9 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import ErrorBoundary from './utils/ErrorBoundary';
 import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
-// import FirstTab from './components/FirstTab.jsx';
-// import SecondTab from './components/SecondTab.jsx';
-// import ThirdTab from './components/ThirdTab.jsx';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Resources from './components/Resources';
 import ListUsers from './components/ListUsers';
 import UpdateUser from './components/UpdateUser';
@@ -31,6 +29,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" render={() => (<Redirect to="/login" />)} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/logout" component={Logout} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/resources" component={Resources} />
                 <Route path="/listusers" component={ListUsers} />
