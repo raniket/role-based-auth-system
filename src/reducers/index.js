@@ -34,6 +34,8 @@ const reducer = (state = initState, action) => {
       return {...state, logedOut: true, user: null, logedIn: false, resource: [], loading: false };
     case 'USER_LOGOUT_FAILED':
       return {...state, logedOut: false, loading: false}
+    case 'RESET_LOGIN_FAILED':
+      return {...state, loginFailed: null};
 
     // handle user signup.
     case 'USER_SIGNUP':

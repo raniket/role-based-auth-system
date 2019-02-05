@@ -32,3 +32,7 @@ export const userSignup = (data) => ({
 export const resetSignedUp = () => ({
   type: 'RESET_SIGNED_UP',
 });
+
+export const resetLoginFailed = () => ({
+  type: 'RESET_LOGIN_FAILED',
+})

@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
 import FormValidator from '../utils/FormValidator';
-import { userLogin, updateCurrentPath } from '../actions';
+import { userLogin, updateCurrentPath, resetLoginFailed } from '../actions';
 import './Login.css';
 
 class Login extends Component {
@@ -73,6 +73,7 @@ class Login extends Component {
 
     if (loginFailed === true) {
       toast.error("Account doesn't exists with this email id! 😬");
+      this.props.resetLoginFailed();
     }
 
     let validation = this.submited ? this.validator.validate(this.state) : this.state.validation;
@@ -113,6 +114,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   userLogin: userLogin,
   updateCurrentPath: updateCurrentPath,
+  resetLoginFailed: resetLoginFailed,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

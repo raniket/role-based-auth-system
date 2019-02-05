@@ -30,7 +30,7 @@ class ListUsers extends Component {
         <td className="pt-3-half">{user.email || 'not provided'}</td>
         <td className="pt-3-half">{user.role || 'not provided'}</td>
         {(currentUserRole !== 'user') ? (<td>
-          mmm
+          <i className="far fa-edit cyan-text text-darken-4"></i>
         </td>) : <th>Not allowed</th>}
       </tr>
     )) : <div>loading data</div>;
