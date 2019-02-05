@@ -1,6 +1,6 @@
 ## Some details about this project.
 * This project contains both the front-end and back-end code.
-* The back-end code resies in api directory, which is implemented using Express.js
+* The back-end code resides in api directory, which is implemented using Express.js
 * The front-end code is in root direcotory of this project, which is implemented using React.js
 
 ## To run this project, you will need to do two things:
