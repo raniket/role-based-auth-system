@@ -1,3 +1,28 @@
+## To run this project, you will need to do two things:
+1. Run the server.
+2. Run the client.
+
+### But first thing first, you should clone this repo in you local machine!!!
+
+## 1. Run the server
+To run the server you need to do the following steps:
+1. Go to the root directory of the project.
+2. Run the command `cd api` to go into the server root dir.
+3. Run the command `npm install or yarn` to install all the dependency needed by the server.
+4. Run the command `nodemon index.js` to start the server. (now the server is up and running).
+5. Run the command `cd ..` to go back to projects root directory.
+
+## 2. Run the client
+To run the client you need to do the following steps:
+1. Run the command `npm install or yarn` to install all the dependency needed by the client.
+2. Run the command `yarn start` to start the client application.
+3. You will be notifed on your terminal on which port the client app can be accessed.
+4. Copy the url from the terminal and past it in you browser search box.
+
+### Tada the project is now up and running
+
+## YOU CAN IGNORE THE FOLLOWING DETAILS BELOW.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
